@@ -4,6 +4,7 @@
 @include('layouts.partials.assets')
 @include('layouts.partials.filter')
 @include('layouts.partials.navbar')
+@include('layouts.partials.notif')
 
 
 <div class="content">
@@ -63,13 +64,13 @@
         <td>{{ $asset->harga }}</td>
         <td>
           @if($asset->status == 'aktif')
-          <button type="button" class="btn btn-sm btn-outline-success" disabled>Aktif</button>
+          <button type="button" class="btn btn-sm btn-outline-success" disabled>Diterima</button>
           @else 
-          <button type="button" class="btn btn-sm btn-outline-danger" disabled>Tidak Aktif</button>
+          <button type="button" class="btn btn-sm btn-outline-danger" disabled>Ditolak</button>
           @endif
         </td>
         <td>
-          <button type="button" class="btn btn-sm btn-primary" onClick="edit(this)" data-id="{{ $asset-> id}}" data-nama="{{ $asset->nama }}" data-jenis="{{ $asset->jenis }}" data-harga="{{ $asset->harga }}" data-status="{{ $asset->status }}">
+          <button type="button" class="btn btn-sm btn-primary">
           <i class="fa-solid fa-comment" style="color: white;"></i>
           </button>
           <button type="button" class="btn btn-sm btn-warning"  onClick="edit(this)" data-id="{{ $asset-> id}}" data-nama="{{ $asset->nama }}" data-jenis="{{ $asset->jenis }}" data-harga="{{ $asset->harga }}" data-status="{{ $asset->status }}">
@@ -90,7 +91,7 @@
         Sebelumnya
       </button>
     </li>
-    <li class="nav-item">
+    <li class="nav-item mx-3">
       <button type="button" class="btn btn-sm btn-light" style="box-shadow: 0px 1px 1px 1px rgba(0,0,0,0.2);" >
        1
       </button>
@@ -100,7 +101,7 @@
         2
        </button>
     </li>
-    <li class="nav-item">
+    <li class="nav-item mx-3">
       <button type="button" class="btn btn-sm btn-light" style="box-shadow: 0px 1px 1px 1px rgba(0,0,0,0.2);" >
         3
        </button>
@@ -111,6 +112,7 @@
       <i class="fa-solid fa-chevron-right"></i>
         
       </button>
+      <span class="text-secondary mx-3">4 dari 10 dokumen</span>
     </li>
   </ul>
   
@@ -144,7 +146,7 @@
     <div class="col-7" style="text-align: right;">
       <button type="button" class="btn btn-sm" style="font-weight: 600; box-shadow: 0px 1px 1px 1px rgba(0,0,0,0.2); background-color: #0C5045; color: white;" onClick="create()">
         <i class="fa-solid fa-plus" style="color: white;"></i>
-        Tambah Pengajuan
+        Tambah
       </button>
     </div>
   </div>
@@ -154,9 +156,10 @@
         <th scope="col">
           <input type="checkbox">
         </th>
-        <th scope="col">Nama Perushaan</th>
-        <th scope="col">Document</th>
-        <th scope="col">Tanggal Dikirim</th>
+        <th scope="col">Nama Siswa</th>
+        <th scope="col">Kelas / Jurusan </th>
+        <th scope="col">Tanggal Mulai</th>
+        <th scope="col">Tanggal Berakhir</th>
         <th scope="col">Status</th>
         <th scope="col">Action</th>
       </tr>
@@ -170,15 +173,16 @@
         <td>{{ $asset->nama }}</td>
         <td>{{ $asset->jenis }}</td>
         <td>{{ $asset->harga }}</td>
+        <td>{{ $asset->harga }}</td>
         <td>
           @if($asset->status == 'aktif')
-          <button type="button" class="btn btn-sm btn-outline-success" disabled>Aktif</button>
+          <button type="button" class="btn btn-sm btn-outline-primary" disabled>Aktif</button>
           @else 
-          <button type="button" class="btn btn-sm btn-outline-danger" disabled>Tidak Aktif</button>
+          <button type="button" class="btn btn-sm btn-outline-danger" disabled>Selesai</button>
           @endif
         </td>
         <td>
-          <button type="button" class="btn btn-sm btn-primary" onClick="edit(this)" data-id="{{ $asset-> id}}" data-nama="{{ $asset->nama }}" data-jenis="{{ $asset->jenis }}" data-harga="{{ $asset->harga }}" data-status="{{ $asset->status }}">
+          <button type="button" class="btn btn-sm btn-primary">
           <i class="fa-solid fa-comment" style="color: white;"></i>
           </button>
           <button type="button" class="btn btn-sm btn-warning"  onClick="edit(this)" data-id="{{ $asset-> id}}" data-nama="{{ $asset->nama }}" data-jenis="{{ $asset->jenis }}" data-harga="{{ $asset->harga }}" data-status="{{ $asset->status }}">
@@ -199,7 +203,7 @@
         Sebelumnya
       </button>
     </li>
-    <li class="nav-item">
+    <li class="nav-item mx-3">
       <button type="button" class="btn btn-sm btn-light" style="box-shadow: 0px 1px 1px 1px rgba(0,0,0,0.2);" >
        1
       </button>
@@ -209,7 +213,7 @@
         2
        </button>
     </li>
-    <li class="nav-item">
+    <li class="nav-item mx-3">
       <button type="button" class="btn btn-sm btn-light" style="box-shadow: 0px 1px 1px 1px rgba(0,0,0,0.2);" >
         3
        </button>
@@ -220,6 +224,7 @@
       <i class="fa-solid fa-chevron-right"></i>
         
       </button>
+      <span class="text-secondary mx-3">10 dari 14 dokumen</span>
     </li>
   </ul>
   
@@ -230,23 +235,8 @@
 </div>
   </div>
     
-  </div>
-  <ul class="nav nav-tabs">
-    <li class="nav-item">
-      <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" >Home</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab"  >Profile</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab"  >Contact</a>
-    </li>
-  </ul>
-  <div class="tab-content">
-    <div class="tab-pane fade show active" id="home" role="tabpanel" >1</div>
-    <div class="tab-pane fade" id="profile" role="tabpanel">2</div>
-    <div class="tab-pane fade" id="contact" role="tabpanel">3</div>
-  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
   </div>
 
   <!-- Modal -->
@@ -293,6 +283,7 @@
 
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 <script>
     const modalForm = $('#modal-assets');
     function create() {
